@@ -65,19 +65,24 @@ public class ImageWatermarkExample {
 	 *            The output image file.
 	 */
 	static void addImageWatermark(File watermarkImageFile,
-			File sourceImageFile, File destImageFile,int x,int y) {
+			File sourceImageFile, File destImageFile) {
 		try {
 			BufferedImage sourceImage = ImageIO.read(sourceImageFile);
 			BufferedImage watermarkImage = ImageIO.read(watermarkImageFile);
 
 			// initializes necessary graphic properties
 			Graphics2D g2d = (Graphics2D) sourceImage.getGraphics();
-			//AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
-			//g2d.setComposite(alphaChannel);
+			AlphaComposite alphaChannel = AlphaComposite.getInstance(
+					AlphaComposite.SRC_OVER, 0.3f);
+			g2d.setComposite(alphaChannel);
 
 			// calculates the coordinate where the image is painted
+			int topLeftX = (sourceImage.getWidth() - watermarkImage.getWidth()) / 2;
+			int topLeftY = (sourceImage.getHeight() - watermarkImage
+					.getHeight()) / 2;
+
 			// paints the image watermark
-			g2d.drawImage(watermarkImage, x, y, null);
+			g2d.drawImage(watermarkImage, topLeftX, topLeftY, null);
 
 			ImageIO.write(sourceImage, "png", destImageFile);
 			g2d.dispose();
@@ -95,9 +100,9 @@ public class ImageWatermarkExample {
 
 		addTextWatermark("Jyoti Akhade", sourceImageFile, destImageFile,420,320);
 
-		//destImageFile = new File("image_watermarked.png");
+		//destImageFile = new File("/home/manisha/image_watermarked.png");
 
-		File watermarkImageFile = new File("qw.jpg");
-		addImageWatermark(watermarkImageFile, sourceImageFile, destImageFile,100,100);
+		//File watermarkImageFile = new File("/home/manisha/logo.jpg");
+		//addImageWatermark(watermarkImageFile, sourceImageFile, destImageFile);
 	}
 }
