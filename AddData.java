@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ImageWatermarkExample {
+public class AddData {
 	/**
 	 * Embeds a textual watermark over a source image to produce a watermarked
 	 * one.
@@ -98,7 +98,7 @@ public class ImageWatermarkExample {
 		File sourceImageFile = new File("icard.png");
 		File destImageFile = new File("ab_wm.png");
 
-		addTextWatermark("Jyoti Akhade", sourceImageFile, destImageFile,420,320);
+		addTextWatermark("Student Name", sourceImageFile, destImageFile,420,320);
 
 		//destImageFile = new File("/home/manisha/image_watermarked.png");
 
